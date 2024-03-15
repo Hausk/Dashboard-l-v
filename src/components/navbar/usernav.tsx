@@ -1,4 +1,6 @@
 'use client'
+import { signOutAction } from "@/actions/auth.action"
+import { auth } from "@/auth/auth"
 import {
     Avatar,
     AvatarFallback,
@@ -8,20 +10,18 @@ import {
   import {
     DropdownMenu,
     DropdownMenuContent,
-    DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuShortcut,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
-import { useTheme } from "next-themes"
-  
-export function UserNav(session: any) {
-    const token = session.session.session
-    const name = token?.user.name ?? '';
-    const email = token?.user.email ?? '';
-    const image = token?.user.image ?? '';
+import { Session } from "next-auth"
+
+export function UserNav({session}: { session: Session}) {
+    const name = session.user.name ?? '';
+    const email = session.user.email ?? 'dbessa@gmail.com';
+    const image = session.user.image ?? '';
     const [firstName, secondName] = name.split(' ');
     return (
       <DropdownMenu>
@@ -43,8 +43,10 @@ export function UserNav(session: any) {
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            Log out
+          <DropdownMenuItem onClick={() => {
+            signOutAction();
+          }}>
+            Se déconnecter
             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuContent>

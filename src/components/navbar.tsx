@@ -14,7 +14,7 @@ const colors = [
   'text-yellow-500',
 ]
 
-export function NavBar(session: any) {
+export function NavBar({session}: { session: any}) {
     return (
         <div className="flex-col flex">
         <div className="border-b">

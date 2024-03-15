@@ -5,6 +5,7 @@ import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, Dr
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { Separator } from "../ui/separator";
 
 export default function Menu() {
     const pathName = usePathname()
@@ -12,33 +13,43 @@ export default function Menu() {
         <Drawer direction="left">
             <DrawerTrigger>
             <MenuIcon size={24} 
-                className={"items-center my-auto"}
+                className={"items-center my-auto block lg:hidden"}
             />
             </DrawerTrigger>
-            <DrawerContent className="w-1/2 h-screen">
+            <DrawerContent className="w-1/2 h-screen flex flex-col">
                 <DrawerHeader>
-                    <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-                    <DrawerDescription>This action cannot be undone.</DrawerDescription>
+                    <DrawerTitle>Admin Panel</DrawerTitle>
+                    <DrawerDescription>LIBRE ET VIVANT</DrawerDescription>
                 </DrawerHeader>
-                <div className="flex flex-col">
-                    <Link href="/" className="flex">
+                <Separator />
+                <div className="flex flex-col my-5 gap-4 h-full justify-start">
+                    <DrawerClose asChild>
+                    <Link href="/" className="flex text-xl">
                         <Circle strokeWidth={0} size={8} className={cn("mr-2 my-auto opacity-0 bg-primary rounded-full", (pathName == '/' && 'opacity-100'))}/>
                         Dashboard
                     </Link>
-                    <Link href="/works" className="flex">
+                    </DrawerClose>
+                    <DrawerClose asChild>
+                    <Link href="/works" className="flex text-xl">
                         <Circle strokeWidth={0} size={8} className={cn("mr-2 my-auto opacity-0 bg-primary rounded-full", (pathName?.startsWith('/works') && 'opacity-100'))}/>
                         Catégories
                     </Link>
-                    <Link href="/users" className="flex">
+                    </DrawerClose>
+                    <DrawerClose asChild>
+                    <Link href="/users" className="flex text-xl">
                         <Circle strokeWidth={0} size={8} className={cn("mr-2 my-auto opacity-0 bg-primary rounded-full", (pathName?.startsWith('/users') && 'opacity-100'))}/>
                         Utilisateurs
                     </Link>
+                    </DrawerClose>
+                    <DrawerClose asChild>
+                    <Link href="/settings" className="flex text-xl">
+                        <Circle strokeWidth={0} size={8} className={cn("mr-2 my-auto opacity-0 bg-primary rounded-full", (pathName?.startsWith('/settings') && 'opacity-100'))}/>
+                        Paramètres
+                    </Link>
+                    </DrawerClose>
                 </div>
                 <DrawerFooter>
-                    <Button>Submit</Button>
-                <DrawerClose>
-                    <Button variant="outline">Cancel</Button>
-                </DrawerClose>
+                    <p className="text-xs text-primary">L&V version 1.0.0</p>
                 </DrawerFooter>
             </DrawerContent>
         </Drawer>

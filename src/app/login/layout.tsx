@@ -1,8 +1,9 @@
 import { Inter } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/providers/themes-providers";
-import { getAuthSession } from "@/utils/auth";
+import { auth } from "@/auth/auth";
 import { redirect } from "next/navigation";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +12,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const session = await getAuthSession();
+  const session = await auth()
   if (session) {
     redirect('/');
   }
@@ -27,6 +28,7 @@ export default async function RootLayout({
           <div className="h-dvh w-dvw flex">
             {children}
           </div>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

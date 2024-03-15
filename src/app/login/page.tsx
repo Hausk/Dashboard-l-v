@@ -10,14 +10,12 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import GoogleButton from "@/components/googleButon";
+import ErrorMessage from "@/components/errorMessage";
 
 export default function Page() {
   return (
     <Card className="w-[350px] m-auto">
-      <CardHeader>
-        <CardTitle>Se connecter</CardTitle>
-        <CardDescription>Connectez vous à votre compte.</CardDescription>
-      </CardHeader>
+      <ErrorMessage />
       <CardContent className="pb-4">
         <form>
           <div className="grid w-full items-center">
