@@ -26,6 +26,7 @@ export default async function Page({ params }: {params: {slug: string}}) {
             <div className="grid grid-cols-3 gap-4">
             {data.images.map((image: any, index: number) => (
                 <SlugAlbumArtwork
+                    key={index}
                     image={image}
                     className="w-full rounded-md"
                     aspectRatio="square"
