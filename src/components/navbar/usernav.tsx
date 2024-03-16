@@ -19,9 +19,9 @@ import {
 import { Session } from "next-auth"
 
 export function UserNav({session}: { session: Session}) {
-    const name = session.user.name ?? '';
-    const email = session.user.email ?? 'dbessa@gmail.com';
-    const image = session.user.image ?? '';
+    const name = session.user?.name ?? '';
+    const email = session.user?.email ?? 'dbessa@gmail.com';
+    const image = session.user?.image ?? '';
     const [firstName, secondName] = name.split(' ');
     return (
       <DropdownMenu>
